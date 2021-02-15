@@ -27,8 +27,8 @@ class db_class():
         pair_data['baseVolume'],
         pair_data['quoteVolume'],
         pair_data['isFrozen'],
-        pair_data['high24hr'],
-        pair_data['low24hr']
+        pair_data['low24hr'],
+        pair_data['high24hr']
         )
         self.cur.execute(query)
         self.db.commit()
