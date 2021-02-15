@@ -4,10 +4,13 @@ from db import db_class
 import urllib.request
 import configparser
 import json
+import sys
+import os
 
 ### load config
+settings_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'settings_python')
 config = configparser.ConfigParser()
-config.read_file(open('settings_python'))
+config.read_file(open(settings_file))
 DB_HOST = config.get('database', 'DB_HOST')
 DB_USER = config.get('database', 'DB_USER')
 DB_PASS = config.get('database', 'DB_PASS')
