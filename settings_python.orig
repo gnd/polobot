@@ -6,4 +6,4 @@ DB_PASS =
 
 [ticker]
 API_URL =
-API_PAIR = 
+API_PAIRS = 
