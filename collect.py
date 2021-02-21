@@ -28,7 +28,7 @@ def generate_graphs():
         
     # initialize graph generator
     generator = graph_generator(False)
-    generator.initialize_source('graph_data/last_position.js', 'last_position')
+    generator.initialize_source(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'graph_data/last_position.js'), 'last_position')
     
     # initialize data processor
     processor = data_processor(False)
