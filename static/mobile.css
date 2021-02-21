@@ -1,0 +1,119 @@
+a.menu_link {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+a.menu_link:hover {
+    text-decoration: underline;
+}
+
+
+a.link {
+    color: black;
+    underline: none;
+    background-color: white;
+    font-size: 3vw;
+}
+
+body {
+    margin: 0;
+}
+
+div.top {
+    width: 100%;
+    border-bottom: 1px solid black;
+    padding-top: 0.2%;
+    margin-bottom: 5%;
+}
+
+div.header {
+    margin-left: 2%;
+}
+
+span.white {
+    background-color: white;
+    font-size: 8.4vw;
+}
+
+span.medium_white {
+    background-color: white;
+    font-size: 1.2em;
+}
+
+span.small_white {
+    font-size: 1vw;
+    background-color: white;
+}
+
+div.graph_container {
+    margin-bottom: 5%;
+    width: 100%;
+}
+
+div.graph_filler {
+    float: left;
+    width: 2%;
+}
+
+div.canvas_container {
+    position: relative;
+    width: 96%;
+    float: left;
+}
+
+canvas.graph {
+    background-color: rgba(255,255,255,0.85);
+    margin-bottom: 0.5%;
+}
+
+canvas.graph_dark {
+    background-color: rgba(10,10,10,0.95);
+    margin-bottom: 0.5%;
+}
+
+br.clear {
+    clear: both;
+}
+
+div.bottom_container {
+    width: 100%;
+    border: 2px;
+    border-color: black;
+}
+
+div.bottom_nav {
+    width: 96%;
+    margin-left: 2%;
+    background-color: rgba(255,255,255,0.85);
+    float: left;
+    font-size: 3.5vw;
+}
+
+
+/*////////////////////////////////// Slider style //////////////////////////*/
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  width: 90%;
+  height: 15px;
+  background: #ffffff;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  width: 25px;
+  height: 15px;
+  background: #4CAF50;
+  cursor: pointer
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 15px;
+  background: #4CAF50;
+  cursor: pointer;
+}

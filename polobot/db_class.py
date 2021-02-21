@@ -15,8 +15,7 @@ class db_class():
         self.db.close()
 
     def insert_pair_data(self, pair_name, pair_data):
-        query = "INSERT INTO {} VALUES(0, '{}', {}, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', NOW())".format(
-        'basic_ticker',
+        query = "INSERT INTO basic_ticker VALUES(0, '{}', {}, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', NOW())".format(
         pair_name, 
         pair_data['id'], 
         pair_data['last'], 
@@ -32,3 +31,8 @@ class db_class():
         )
         self.cur.execute(query)
         self.db.commit()
+        
+    def get_last_position(self, pair_name, minutes):
+        query = "SELECT timestamp, last_position FROM basic_ticker WHERE pair_name = '{}' AND timestamp > NOW() - INTERVAL {} MINUTE".format(pair_name, minutes)
+        self.cur.execute(query)
+        return self.cur.fetchall()

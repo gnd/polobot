@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
-from polobot.db_class import db_class
 from polobot.ticker_collector import ticker_collector
+from polobot.graph_generator import graph_generator
+from polobot.data_processor import data_processor
+from polobot.db_class import db_class
 import configparser
 import sys
 import os
@@ -17,6 +19,31 @@ DB_NAME = config.get('database', 'DB_NAME')
 API_URL = config.get('ticker', 'API_URL')
 API_PAIRS = config.get('ticker', 'API_PAIRS')
 
+def generate_graphs():
+    # initialize db
+    db = db_class(DB_HOST, DB_USER, DB_PASS, DB_NAME)
+    db.open_db()
+        
+    # initialize graph generator
+    generator = graph_generator(False)
+    generator.initialize_source('graph_data/last_position.js', 'last_position')
+    
+    # initialize data processor
+    processor = data_processor(False)
+    
+    # get last month of data & process
+    rows = db.get_last_position('BTC_DCR', 100000)
+    data = processor.process_rows(rows)
+    
+    # output data
+    generator.generate_last_position(data, 'daily', 'BTC_DCR', 'last_position')
+    generator.generate_last_position(data, 'weekly', 'BTC_DCR', 'last_position')
+    generator.generate_last_position(data, 'monthly', 'BTC_DCR', 'last_position')
+
+    # close db
+    db.close_db()
+    
+    
 def main():
     # initialize db
     db = db_class(DB_HOST, DB_USER, DB_PASS, DB_NAME)
@@ -39,4 +66,5 @@ def main():
     db.close_db()
     
 if __name__ == '__main__':
-    main()
+    #main()
+    generate_graphs()
