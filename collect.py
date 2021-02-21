@@ -8,6 +8,7 @@ import configparser
 import sys
 import os
 
+
 ### load config
 settings_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'settings_python')
 config = configparser.ConfigParser()
@@ -18,6 +19,7 @@ DB_PASS = config.get('database', 'DB_PASS')
 DB_NAME = config.get('database', 'DB_NAME')
 API_URL = config.get('ticker', 'API_URL')
 API_PAIRS = config.get('ticker', 'API_PAIRS')
+
 
 def generate_graphs():
     # initialize db
@@ -44,15 +46,15 @@ def generate_graphs():
     db.close_db()
     
     
-def main():
+def collect():
     # initialize db
     db = db_class(DB_HOST, DB_USER, DB_PASS, DB_NAME)
     db.open_db()
-    
+        
     # get ticker data
     collector = ticker_collector(API_URL)
     data = collector.collect_basic_ticker()
-    
+        
     # process & store data
     for pair in API_PAIRS.split(','):
         pair_data = data[pair]
@@ -65,6 +67,12 @@ def main():
     # close db
     db.close_db()
     
-if __name__ == '__main__':
-    #main()
+    
+def main():
+    collect()
     generate_graphs()
+    
+    
+if __name__ == '__main__':
+    main()
+    
